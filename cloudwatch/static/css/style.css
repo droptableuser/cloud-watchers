@@ -1,0 +1,9 @@
+html, body {
+    height: 100%;
+}
+.text-bg-critical {
+    background-color: #972b1e;
+  }  
+.table td.no-bordered {
+    border-top: 0;
+}

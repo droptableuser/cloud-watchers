@@ -1,0 +1,98 @@
+<!-- templates/srv_list.html -->
+{% extends "layout.html" %} {% block scripts %}
+<script>
+  $(document).ready(function () {
+    $("#srvTable").DataTable();
+  });
+</script>
+<script>
+  // When a row in the table is clicked...
+  $("#srvTable tbody").on("click", "tr", function () {
+    var srvId = $(this).data("srvid"); // Get the srv_id from the row's data-srvid attribute
+    // Fetch the SRV details from the server
+    $.get("/srv/modal/" + srvId, function (data) {
+      // Populate and show the modal with the fetched data
+      $("#srvModalBody").html(data); // Assuming /srv/ route returns a partial HTML to be placed inside the modal body
+      $("#srvModal").modal("show");
+    });
+  });
+</script>
+{% endblock %} {% block content %}
+<h1>Shared Responsibility Violation (SRV) List</h1>
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-primary">
+      <div class="box-body table-responsive no-padding">
+        <table id="srvTable" class="table table-hover order-column">
+          <thead>
+            <tr>
+              <th class="text-center">ID</th>
+              <th class="text-center">Vendor</th>
+              <th class="text-center">Link</th>
+              <th class="text-center">Rating</th>
+              <th class="text-center">Vendor Type</th>
+            </tr>
+          </thead>
+
+            {% for srv in srvs %}
+            <tr
+              data-toggle="modal"
+              data-target="#srvModal"
+              data-srvid="{{ srv.srv_id }}"
+            >
+              <td class="col-md-2">
+                <a
+                  href="{{ url_for('srv_page.srv_detail', srv_id=srv.srv_id) }}"
+                  ><strong>{{ srv.srv_id }}</strong></a>
+              </td>
+              <td class="col-md-2">{{ srv.vendor.name }}</td>
+
+              <td class="col-md-1 text-center"><a href="{{ srv.link }}">Source</a></td>
+              <td class="col-md-1 text-center"><span class="badge {{ score_bg(srv.rating)[1] }}">{{ srv.rating}}</span></td>
+              <td class="col-md-2 text-center">{{ srv.vendor.vendor_type }}</td>
+            </tr>
+            <tr>
+                <td class="col-md-12 no-bordered" colspan="5">
+                    {{ srv.description }}
+                  </td>
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="6">No SRVs found.</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Placeholder -->
+<div
+  class="modal fade"
+  id="srvModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="srvModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="srvModalLabel">SRV Details</h6>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="srvModalBody">
+        <!-- SRV details will be loaded here -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

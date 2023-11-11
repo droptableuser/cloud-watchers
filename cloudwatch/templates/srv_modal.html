@@ -1,0 +1,19 @@
+<!-- templates/srv_modal.html -->
+
+<h1>SRV Detail: {{ srv.srv_id }}</h1>
+<div>
+    <strong>Vendor:</strong> {{ srv.vendor.name }}<br>
+    <strong>Description:</strong> {{ srv.description }}<br>
+    <strong>Link:</strong> <a href="{{ srv.link }}" target="_blank">Source</a><br>
+    <strong>Reporter:</strong> {{ srv.reporter }}<br>
+    <strong>Vendor Type:</strong> {{ srv.vendor_type }}<br>
+    <strong>Rating:</strong> {{ srv.rating }}<br>
+    <strong>Rating Description:</strong> {{ srv.rating_description }} <br>
+    
+</div>
+<a href="{{ url_for('srv_page.srv_list') }}">Back to SRV List</a>
+<script>
+$('#srvModal').on('click','button', function(){
+    $('#srvModal').modal('hide');
+});
+</script>
