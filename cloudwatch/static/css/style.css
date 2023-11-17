@@ -7,3 +7,33 @@ html, body {
 .table td.no-bordered {
     border-top: 0;
 }
+
+.hero {
+    background: #007bff; /* Or any other background */
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.info-section {
+    padding: 40px 0;
+    background: #f8f9fa; /* Light background for contrast */
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto; /* Centering the container */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}

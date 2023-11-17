@@ -1,0 +1,26 @@
+<!-- templates/landing.html -->
+{% extends "layout.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <h1>Welcome to the SRV Dashboard</h1>
+        <p>This dashboard allows you to track Shared Responsibility Violations (SRVs).</p>
+        <a href="{{ url_for('srv_page.srv_list') }}" class="btn btn-primary">Explore SRVs</a>
+    </div>
+</section>
+
+<!-- Information Section -->
+<section class="info-section">
+    <div class="container">
+        <h2>About the Project</h2>
+        <p>This project aims to provide an interface for tracking and managing exploitations and shared responsibility violations in the cloud</p>
+        <!-- Additional content -->
+    </div>
+</section>
+
+<!-- Any other sections you want to include -->
+<!-- ... -->
+
+{% endblock %}

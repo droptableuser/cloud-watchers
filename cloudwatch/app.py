@@ -10,7 +10,7 @@ db.init_app(app)
 @app.route('/')
 def dashboard():
     # This is where you'll fetch your data and pass it to your template
-    return render_template('dashboard.html')
+    return render_template('landing.html')
 
 app.register_blueprint(srv_page)
 
