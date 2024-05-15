@@ -21,4 +21,4 @@ tomli==2.0.1
 typing-extensions==4.8.0
 werkzeug==3.0.3
 zipp==3.17.0
-gunicorn==21.2.0
+gunicorn==22.0.0
